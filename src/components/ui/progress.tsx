@@ -5,6 +5,13 @@ import * as ProgressPrimitive from "@radix-ui/react-progress";
 
 import { cn } from "@/lib/utils";
 
+/**
+ * Renders a styled progress bar with an animated indicator reflecting the given value.
+ *
+ * @param value - The current progress value, typically between 0 and 100. If undefined, the indicator is fully hidden.
+ * @param className - Optional additional CSS classes for the progress bar container.
+ * @returns A React element displaying the progress bar and indicator.
+ */
 function Progress({
   className,
   value,
