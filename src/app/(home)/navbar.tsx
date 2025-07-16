@@ -1,15 +1,18 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Poppins } from "next/font/google";
+import { Oswald } from "next/font/google";
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
+import { cn, cnRaw } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { NavbarSidebar } from "./navbar-sidebar";
+import { useState } from "react";
+import { MenuIcon } from "lucide-react";
 
-const poppins = Poppins({
+const oswald = Oswald({
   subsets: ["latin"],
-  weight: ["700"],
+  weight: ["200", "300", "400", "500", "600", "700"],
 });
 
 interface NavbarItemProps {
@@ -35,43 +38,72 @@ const NavbarItem = ({ href, children, isActive }: NavbarItemProps) => {
   );
 };
 
-const NavbarItems = [
-  { href: "/", Children: "Home" },
-  { href: "/about", Children: "About" },
-  { href: "/features", Children: "Features" },
-  { href: "/pricing", Children: "Pricing" },
-  { href: "/contact", Children: "Contact" },
+const navbarItems = [
+  { href: "/", children: "Home" },
+  { href: "/about", children: "About" },
+  { href: "/features", children: "Features" },
+  { href: "/pricing", children: "Pricing" },
+  { href: "/contact", children: "Contact" },
 ];
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <nav className="bg-base-100 text-base-content h-20 flex border-b justify-between font-medium">
+    <nav className="bg-base-100 text-base-content h-20 flex border-b justify-between font-medium font-outline-accent">
       <Link href="/" className="pl-6 flex items-center">
         <span
-          className={cn(
-            "text-5xl font-semibold font-outline-2 font-outline-secondary",
-            poppins.className
+          className={cnRaw(
+            "text-6xl font-extrabold font-outline-2 font-fill-accent font-outline-primary text-shadow-md",
+            oswald.className
           )}
         >
-          funroad
+          Bookeo
         </span>
       </Link>
 
+      <NavbarSidebar
+        items={navbarItems}
+        open={isSidebarOpen}
+        onOpenChange={setIsSidebarOpen}
+      />
+
       <div className="items-center gap-4 hidden lg:flex">
-        {NavbarItems.map((item) => (
+        {navbarItems.map((item) => (
           <NavbarItem
             key={item.href}
             href={item.href}
             isActive={pathname === item.href}
           >
-            {item.Children}
+            {item.children}
           </NavbarItem>
         ))}
       </div>
 
-      <div></div>
+      <div className="hidden lg:flex lg:items-center">
+        <Button
+          variant={"highlight"}
+          className=" px-12 h-full border-l border-r-0 border-t-0 border-b-0 border-base-content rounded-none"
+        >
+          Log-In
+        </Button>
+        <Button
+          variant={"highlight"}
+          className="bg-black text-white px-12 h-full border-l border-r-0 border-t-0 border-b-0 border-base-content rounded-none"
+        >
+          Sign-Up
+        </Button>
+      </div>
+      <div className="flex lg:hidden items-center justify-center">
+        <Button
+          variant="ghost"
+          className="size-12 border-transparent"
+          onClick={() => setIsSidebarOpen(true)}
+        >
+          <MenuIcon />
+        </Button>
+      </div>
     </nav>
   );
 };
