@@ -4,12 +4,93 @@
   themes: all;
 }
 
-@layer base {
+/*
+DUE TO HOW THESE CUSTOM CLASSES ARE NAMED, THE CUSTOM UTIL FUNCTION "cnRaw()" MUST BE USED IN PLACE OF "cn()" TO STOP TAILWIND FROM PURGING THEM AS IT MISIDENTIFIES THEM AS CONFLICTING STYLES
+*/
+@layer utilities {
+  /*FONT OUTLINE THICKNESS CLASSES*/
+  .font-outline-1 {
+    -webkit-text-stroke-width: 1px;
+  }
   .font-outline-2 {
     -webkit-text-stroke-width: 2px;
   }
+  .font-outline-3 {
+    -webkit-text-stroke-width: 3px;
+  }
+  .font-outline-4 {
+    -webkit-text-stroke-width: 4px;
+  }
+  .font-outline-5 {
+    -webkit-text-stroke-width: 5px;
+  }
 
+  /*FONT OUTLINE COLOR CLASSES*/
+  .font-outline-primary {
+    -webkit-text-stroke-color: var(--color-primary);
+  }
   .font-outline-secondary {
     -webkit-text-stroke-color: var(--color-secondary);
+  }
+  .font-outline-accent {
+    -webkit-text-stroke-color: var(--color-accent);
+  }
+  .font-outline-info {
+    -webkit-text-stroke-color: var(--color-info);
+  }
+  .font-outline-success {
+    -webkit-text-stroke-color: var(--color-success);
+  }
+  .font-outline-warning {
+    -webkit-text-stroke-color: var(--color-warning);
+  }
+  .font-outline-error {
+    -webkit-text-stroke-color: var(--color-error);
+  }
+  .font-outline-neutral {
+    -webkit-text-stroke-color: var(--color-neutral);
+  }
+
+  /*FONT FILL COLOR CLASSES*/
+  .font-fill-primary {
+    -webkit-text-fill-color: var(--color-primary);
+  }
+  .font-fill-secondary {
+    -webkit-text-fill-color: var(--color-secondary);
+  }
+  .font-fill-accent {
+    -webkit-text-fill-color: var(--color-accent);
+  }
+  .font-fill-info {
+    -webkit-text-fill-color: var(--color-info);
+  }
+  .font-fill-success {
+    -webkit-text-fill-color: var(--color-success);
+  }
+  .font-fill-warning {
+    -webkit-text-fill-color: var(--color-warning);
+  }
+  .font-fill-error {
+    -webkit-text-fill-color: var(--color-error);
+  }
+  .font-fill-neutral {
+    -webkit-text-fill-color: var(--color-neutral);
+  }
+
+  /*TEXT SHADOW CLASSES*/
+  .text-shadow-sm {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  }
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  .text-shadow-md {
+    text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.75);
+  }
+  .text-shadow-lg {
+    text-shadow: 6px 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  .text-shadow-none {
+    text-shadow: none;
   }
 }
